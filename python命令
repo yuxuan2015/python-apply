@@ -1,0 +1,68 @@
+python命令小结
+1 unicode转中文
+print(u"\u501f\u6b3e\u5230\u8d26\u65f6\u95f4")
+
+2 keras控制GPU显存
+一、Tensorflow
+1、指定显卡 
+代码中加入
+
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
+或者在运行代码前，在终端
+
+export CUDA_VISIBLE_DEVICES=0 
+2、为显存分配使用比例 
+在建立tf.Session加入设置数据（显存使用比例为1/3），但有时你虽然设置了使用上限，在程序需要更高显存时还是会越过该限制
+
+gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.333)  
+sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))  
+
+3、自适应分配 
+会自适应分配显存，不会将显存全部分配导致资源浪费
+
+config = tf.ConfigProto()  
+config.gpu_options.allow_growth=True  
+sess = tf.Session(config=config)  
+
+二、Keras
+与tensorflow大差不差，就是将tf.Session配置转置Keras配置 
+1、指定显卡 
+代码中加入
+
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
+或者在运行代码前，在终端
+export CUDA_VISIBLE_DEVICES=0 
+
+2、为显存分配使用比例
+
+import tensorflow as tf
+import keras.backend.tensorflow_backend as KTF
+
+config = tf.ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction = 0.333
+session = tf.Session(config=config)
+KTF.set_session(session)
+
+3、自适应分配
+
+import keras.backend.tensorflow_backend as KTF
+
+config = tf.ConfigProto()  
+config.gpu_options.allow_growth=True   
+session = tf.Session(config=config)
+KTF.set_session(session)
+
+4、如有设置fit_generator 
+将多线程关闭
+
+#可将
+use_multiprocessing=True
+#改为
+use_multiprocessing=False
+
+4 
+pip freeze >requirements.txt

@@ -1,0 +1,85 @@
+1 tensorflow版本的问题：
+1.1 python TypeError: Expected int32, got list containing Tensors of type '_Message' instead.
+错误原因：tensorflow的版本问题
+
+
+tensorflow1.0及以后api定义：(数字在后，tensors在前)
+
+tf.stack(tensors, axis=axis)
+For example:
+
+t1 = [[1, 2, 3], [4, 5, 6]]
+t2 = [[7, 8, 9], [10, 11, 12]]
+tf.concat([t1, t2], 0) ==> [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]
+tf.concat([t1, t2], 1) ==> [[1, 2, 3, 7, 8, 9], [4, 5, 6, 10, 11, 12]]
+
+# tensor t3 with shape [2, 3]
+# tensor t4 with shape [2, 3]
+tf.shape(tf.concat([t3, t4], 0)) ==> [4, 3]
+tf.shape(tf.concat([t3, t4], 1)) ==> [2, 6]
+tensorflow之前版本（0.x版本：数字在前，tensors在后）
+For example:
+
+
+t1 = [[1, 2, 3], [4, 5, 6]]
+t2 = [[7, 8, 9], [10, 11, 12]]
+tf.concat(0，[t1, t2], 0)
+tf.concat(1，[t1, t2], 1)
+
+解决方法：
+调整tf.concat函数中参数位置即可.
+
+1.2 ValueError: Only call `sigmoid_cross_entropy_with_logits` with named arguments (labels=..., logits=.
+
+loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(output,Y))
+改为
+loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(output,Y))
+
+1.3 AttributeError: module 'tensorflow' has no attribute 'batch_matmul'
+把batch_matmul改成matmul
+
+1.4 Input ‘split_dim’ of ‘Split’ Op has type float32 that does not match expected type of int32
+This is because in Tensorflow versions < 0.12.0 the split function takes the arguments as:
+
+x = tf.split(0, n_steps, x) # tf.split(axis, num_or_size_splits, value) 
+The tutorial you are working from was written for versions > 0.12.0, which has been changed to be consistent with Numpy’s split syntax:
+x = tf.split(x, n_steps, 0) # tf.split(value, num_or_size_splits, axis)
+
+1.5 TypeError: concat() got an unexpected keyword argument ‘axis’
+tf.concat(concat_dim=axis, values=inputs, name=name) 
+修改为： tf.concat(inputs,1,name=name)
+
+1.6 ValueError: ‘size’ must be a 1-D Tensor of 2 elements
+img = tf.image.resize_images(img, new_shape[0], new_shape[1]) 
+改为 
+img = tf.image.resize_images(img, new_shape)
+
+1.7 ‘module’ object has no attribute ‘pack’
+因为TF后面的版本修改了这个函数的名称，把 tf.pack 改为 tf.stack。
+
+1.8 The value of a feed cannot be a tf.Tensor object. Acceptable feed values include Python scalars, strings, lists, or numpy ndarrays
+数据集是feed输入的，feed的数据格式是有要求的 
+解决：img,label = sess.run[img,label],用返回值
+
+1.9 AttributeError: ‘module’ object has no attribute ‘per_image_whitening’
+For anyone else who has this problem, per_image_whitening was replaced by per_image_standardization in v0.12.
+
+1.10 AttributeError: ‘module’ object has no attribute ‘image_summary’
+tf.image_summary should be renamed to tf.summary.image;
+
+1.11 AttributeError: ‘module’ object has no attribute ‘mul’
+tf.mul(a,b) 这里的矩阵a和矩阵b的shape必须相等 tf.mul()是矩阵的element-wise相乘（即Hadamard乘积） 
+tf.matmul(a,b) 这里的矩阵a和矩阵b的shape应是a的行数对等与b的列数，tf.matmul()是矩阵的一般相乘。 
+解决：[tf.mul，tf.sub ] 和 [tf.neg] 不再使用，改为 [tf.multiply]，[tf.subtract] 和 [tf.negative]。
+
+1.12 AttributeError: ‘module’ object has no attribute ‘scalar_summary’
+修改为:tf.summary.scalar(‘batch_loss’, loss)原因:新版本做了调整 …
+
+1.12 AttributeError: ‘module’ object has no attribute ‘histogram_summary’
+修改为:tf.summary.histogram原因:新版本做了调整 …
+
+
+1.13
+E tensorflow/stream_executor/cuda/cuda_dnn.cc:353] Could not create cudnn handle: CUDNN_STATUS_NOT_INITIALIZED
+解决方法：
+执行 ：sudo rm -rf ~/.nv/    （一定最后边不要漏掉“/”，否则会提示“.nv”是目录, 另外“~”前边有空格）

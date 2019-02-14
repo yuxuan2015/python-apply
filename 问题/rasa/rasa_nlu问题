@@ -1,0 +1,40 @@
+1 spacy引起的问题
+Traceback (most recent call last):
+  File "/home/bb0/anaconda3/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/home/bb0/anaconda3/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/rasa_nlu/train.py", line 184, in <module>
+    num_threads=cmdline_args.num_threads)
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/rasa_nlu/train.py", line 148, in do_train
+    trainer = Trainer(cfg, component_builder)
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/rasa_nlu/model.py", line 152, in __init__
+    components.validate_requirements(cfg.component_names)
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/rasa_nlu/components.py", line 49, in validate_requirements
+    from rasa_nlu import registry
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/rasa_nlu/registry.py", line 29, in <module>
+    from rasa_nlu.extractors.crf_entity_extractor import CRFEntityExtractor
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/rasa_nlu/extractors/crf_entity_extractor.py", line 20, in <module>
+    import spacy
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/spacy/__init__.py", line 4, in <module>
+    from .cli.info import info as cli_info
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/spacy/cli/__init__.py", line 1, in <module>
+    from .download import download
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/spacy/cli/download.py", line 10, in <module>
+    from .link import link
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/spacy/cli/link.py", line 8, in <module>
+    from ..compat import symlink_to, path2str
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/spacy/compat.py", line 9, in <module>
+    from thinc.neural.util import copy_array
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/thinc/neural/__init__.py", line 1, in <module>
+    from ._classes.model import Model
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/thinc/neural/_classes/model.py", line 12, in <module>
+    from ..train import Trainer
+  File "/home/bb0/anaconda3/lib/python3.6/site-packages/thinc/neural/train.py", line 3, in <module>
+    from .optimizers import Adam, SGD, linear_decay
+  File "optimizers.pyx", line 13, in init thinc.neural.optimizers
+  File "cymem.pxd", line 1, in init thinc.neural.ops
+ValueError: cymem.cymem.Pool has the wrong size, try recompiling. Expected 64, got 48
+解决方法：
+pip uninstall spacy
+pip install spacy[cuda90] ##把cuda90换成对应的cuda版本，查看cuda版本可以运行nvcc --version

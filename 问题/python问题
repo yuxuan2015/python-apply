@@ -1,0 +1,44 @@
+1 hdf5版本冲突
+解决方法：
+修改anaconda的hdf5版本和系统一致
+conda install -c anaconda hdf5==1.10.1
+
+2 Traceback (most recent call last): 
+File “/usr/bin/pip”, line 9, in 
+from pip import main
+
+解决办法
+
+修改 /usr/bin/pip 文件
+sudo vim /usr/bin/pip
+
+from pip import main
+if __name__ == '__main__':
+    sys.exit(main())
+改为：
+from pip import __main__
+if __name__ == '__main__':
+    sys.exit(__main__._main())
+
+
+3 jupyter  socket.gaierror: [Errno -2] Name or service not known
+jupyter >=5.7会出现这个问题
+解决方法：
+sudo gedit /home/lyy/.jupyter/jupyter_notebook_config.py
+change
+	c.NotebookApp.ip = '*'
+to
+	c.NotebookApp.ip = '0.0.0.0'
+
+4  ImportError: cannot import name abs
+tensorflow和protobuf版本不兼容
+pip uninstall tensorflow-gpu protobuf --yes
+pip install tensorflow-gpu
+pip install --ignore-installed --upgrade --ignore-installed tensorflow
+
+5 ModuleNotFoundError: No module named 'prompt_toolkit.formatted_text'
+解决方法：
+pip install -U prompt-toolkit
+
+c.NotebookApp.enable_mathjax = True  //把#去掉保存就OK
+
