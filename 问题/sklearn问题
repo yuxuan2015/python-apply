@@ -2,5 +2,5 @@
 解决方法：
 以GBDT为例：train_y后加上astype(‘int’)即可
 ```
-gbdt.fit(train_x, train_y.astype(‘int’))
+  gbdt.fit(train_x, train_y.astype(‘int’))
 ```
