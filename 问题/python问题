@@ -1,7 +1,7 @@
 1 hdf5版本冲突
 解决方法：
 修改anaconda的hdf5版本和系统一致
-conda install -c anaconda hdf5==1.10.1
+conda install -c anaconda hdf5==1.10.1(系统的版本)
 
 2 Traceback (most recent call last): 
 File “/usr/bin/pip”, line 9, in 
