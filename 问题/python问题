@@ -45,4 +45,5 @@ c.NotebookApp.enable_mathjax = True  //把#去掉保存就OK
 6 from prompt_toolkit.token import Token
 ImportError: cannot import name 'Token'
 解决方法：
+pip install -U prompt-toolkit==1.0.15
 conda install -c conda-forge prompt_toolkit
