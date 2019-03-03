@@ -47,3 +47,9 @@ ImportError: cannot import name 'Token'
 解决方法：
 pip install -U prompt-toolkit==1.0.15
 conda install -c conda-forge prompt_toolkit
+
+7 
+RemoveError: 'setuptools' is a dependency of conda and cannot be removed from conda's operating environment.
+解决方法：
+pip uninstall setuptools
+conda install -c conda-forge setuptools
