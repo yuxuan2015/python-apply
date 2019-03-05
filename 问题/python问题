@@ -51,5 +51,4 @@ conda install -c conda-forge prompt_toolkit
 7 
 RemoveError: 'setuptools' is a dependency of conda and cannot be removed from conda's operating environment.
 解决方法：
-pip uninstall setuptools
-conda install -c conda-forge setuptools
+conda upgrade conda
