@@ -1,0 +1,325 @@
+深度学习主机环境配置: Ubuntu16.04+Nvidia GTX 1080+CUDA8.0
+http://www.tuicool.com/articles/JvUvQjZ
+
+deeplearning资料
+教材：
+www.deeplearning.net 中提到的教材 Deep Learning, Ian Goodfellow et al.
+免费在线课程：Udacity deep learning; Stanford cs224d (DL for NLP) cs231n (DL for CV)
+工具文档：tensorflow MxNet caffe CNTK theano chainer...
+
+深度学习语音识别实践
+
+一、深度学习工具汇总
+1. Caffe
+贾扬清同学读博士顺手写的框架，常用于图像处理，支持最新cuda/cudnn，支持单机多GPU，速度很快，可在linux和windows系统下搭建，号称不用写代码。。。
+编程语言 c++ cuda python
+API接口 c++ python
+项目地址 https://github.com/BVLC/caffe
+官方网址 http://caffe.berkeleyvision.org/
+ 
+2. Theano
+常活跃于学术界，计算图方式的架构设计，方便快速构建算法，仅支持单机单GPU，速度相对慢，不适合做工程。
+API接口 python 2.7
+项目地址 https://github.com/Theano/Theano
+参考网址 http://www.deeplearning.net/software/theano 
+ 
+3. Tensorflow
+鼎鼎大名的谷歌深度学习框架，类似theano，但支持单机多GPU，多机以及分布式环境搭建，速度尚可，不是最快，以后会更好。
+编程接口 c++ python
+官方网站 https://www.tensorflow.org
+项目地址 https://github.com/tensorflow/tensorflow
+ 
+4. CNTK
+微软的深度学习框架，速度最快，支持单机、多机、多GPU系统，也号称不用敲代码。。。
+编程接口 c++ python 3.4 以后将支持python 2.7 和 3.5
+官方网址 http://cntk.codeplex.com/
+项目地址 https://github.com/Microsoft/CNTK
+ 
+5. keras
+对theano和tensorflow的一个wrapper封装，使用非常方便。
+接口 python
+ 
+6. MATLAB
+这个不算深度学习工具，但新版MATLAB集成了一些神经网络函数，可以方便地构建深度学习算法，matlab代码简洁，运算高效，也支持cuda加速，总之会matlab是有必要的。
+ 
+6. 其他
+Torch
+chainer
+paddle
+
+深度学习工作站安装Ubuntu 16.04及相关配置
+安装系统，分区 
+不设置swap空间
+格式化数据盘data0,data1,…,data4
+更换ppa源 
+更换为china镜像
+安装Nvidia驱动(GTX 1080) 
+添加ppa源及导入key 
+sudo apt-get install vim 
+sudo gedit /etc/apt/sourcelist.d 
+添加 
+deb http://ppa.launchpad.net/graphics-drivers/ppa/ubuntu xenial main 
+deb-src http://ppa.launchpad.net/graphics-drivers/ppa/ubuntu xenial main
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse 
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse 
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse 
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse 
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse 
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse 
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse 
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse 
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse 
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+
+
+配置ubuntu
+加入官方ppa源：
+sudo add-apt-repository ppa:graphics-drivers/ppa
+刷新软件库并安装最新的驱动
+sudo apt-get update
+sudo apt-get install nvidia-396 nvidia-settings nvidia-prime
+nvidia-settings
+#查看显卡信息
+sudo lshw -numeric -C display
+
+sudo passwd root
+
+
+1.安装软件
+1.1安装openssh-server,配置ssh无密码登录
+    sudo apt-get install openssh-server
+    ssh localhost
+    cd ~/.ssh                      # 如果没有该目录，先执行一次ssh localhost
+    ssh-keygen -t rsa              # 一直按回车就可以
+    sudo cp id_rsa.pub authorized_keys
+
+ssh-keygen -f "/home/lyy/.ssh/known_hosts" -R localhost
+
+1.2安装anaconda
+    cd /home/lyy/lyy/software/python配置/3.6
+    sudo bash Anaconda3-5.1.0-Linux-x86_64.sh
+    sudo chown -R lyy /home/lyy/anaconda3/
+	
+	export PATH=/home/lyy/anaconda3/bin:$PATH
+    sudo gedit /etc/profile
+    export JAVA_HOME=/usr/java/jdk1.8.0_144
+    export PATH=$PATH:/home/lyy/anaconda3/bin:$JAVA_HOME/bin:/home/lyy/anaconda3/lib/python3.6/site-packages
+    source /etc/profile
+
+sudo chown lyy /home/lyy/anaconda3/ -R
+
+vim /home/lyy/.bashrc
+
+export PATH=$PATH:/home/lyy/anacondals3/bin:/home/lyy/anaconda3/lib/python3.6/site-packages
+
+source /home/lyy/.bashrc
+
+升级python版本
+sudo ln -s /data/anaconda3/bin/python3.6 /usr/bin/python 
+//注意第一个路径是新安装的python版本路径，而第二个路径是系统默认路径
+
+    1.3 安装JDK
+#创建文件夹
+		sudo mkdir /usr/java
+		#解压
+        cd /home/lyy/lyy/software
+        sudo tar -zxvf jdk-8u144-linux-x64.tar.gz  -C /usr/java/
+将java添加到环境变量中
+		sudo gedit /etc/profile
+		#在文件最后添加
+		export JAVA_HOME=/usr/java/jdk1.8.0_144
+		export JRE_HOME=$JAVA_HOME/jre
+		export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+	
+        #刷新配置
+       source /etc/profile
+
+    1.4 安装pycharm
+    sudo mkdir /opt/software
+    cd /data/software/python配置
+    #将解压完的文件夹移动到/opt/software目录
+    sudo tar -zxvf pycharm-professional-2017.3.4.tar.gz  -C /opt/software
+    # 进入文件夹的bin文件夹内
+    cd /opt/software/pycharm-2017.3.4/bin
+    # 运行sh文件安装
+    sudo sh pycharm.sh
+
+    server选项里边输入 
+　　K71U8DBPNE-eyJsaWNlbnNlSWQiOiJLNzFVOERCUE5FIiwibGljZW5zZWVOYW1lIjoibGFuIHl1IiwiYXNzaWduZWVOYW1lIjoiIiwiYXNzaWduZWVFbWFpbCI6IiIsImxpY2Vuc2VSZXN0cmljdGlvbiI6IkZvciBlZHVjYXRpb25hbCB1c2Ugb25seSIsImNoZWNrQ29uY3VycmVudFVzZSI6ZmFsc2UsInByb2R1Y3RzIjpbeyJjb2RlIjoiSUkiLCJwYWlkVXBUbyI6IjIwMTktMDUtMDQifSx7ImNvZGUiOiJSUzAiLCJwYWlkVXBUbyI6IjIwMTktMDUtMDQifSx7ImNvZGUiOiJXUyIsInBhaWRVcFRvIjoiMjAxOS0wNS0wNCJ9LHsiY29kZSI6IlJEIiwicGFpZFVwVG8iOiIyMDE5LTA1LTA0In0seyJjb2RlIjoiUkMiLCJwYWlkVXBUbyI6IjIwMTktMDUtMDQifSx7ImNvZGUiOiJEQyIsInBhaWRVcFRvIjoiMjAxOS0wNS0wNCJ9LHsiY29kZSI6IkRCIiwicGFpZFVwVG8iOiIyMDE5LTA1LTA0In0seyJjb2RlIjoiUk0iLCJwYWlkVXBUbyI6IjIwMTktMDUtMDQifSx7ImNvZGUiOiJETSIsInBhaWRVcFRvIjoiMjAxOS0wNS0wNCJ9LHsiY29kZSI6IkFDIiwicGFpZFVwVG8iOiIyMDE5LTA1LTA0In0seyJjb2RlIjoiRFBOIiwicGFpZFVwVG8iOiIyMDE5LTA1LTA0In0seyJjb2RlIjoiR08iLCJwYWlkVXBUbyI6IjIwMTktMDUtMDQifSx7ImNvZGUiOiJQUyIsInBhaWRVcFRvIjoiMjAxOS0wNS0wNCJ9LHsiY29kZSI6IkNMIiwicGFpZFVwVG8iOiIyMDE5LTA1LTA0In0seyJjb2RlIjoiUEMiLCJwYWlkVXBUbyI6IjIwMTktMDUtMDQifSx7ImNvZGUiOiJSU1UiLCJwYWlkVXBUbyI6IjIwMTktMDUtMDQifV0sImhhc2giOiI4OTA4Mjg5LzAiLCJncmFjZVBlcmlvZERheXMiOjAsImF1dG9Qcm9sb25nYXRlZCI6ZmFsc2UsImlzQXV0b1Byb2xvbmdhdGVkIjpmYWxzZX0=-Owt3/+LdCpedvF0eQ8635yYt0+ZLtCfIHOKzSrx5hBtbKGYRPFDrdgQAK6lJjexl2emLBcUq729K1+ukY9Js0nx1NH09l9Rw4c7k9wUksLl6RWx7Hcdcma1AHolfSp79NynSMZzQQLFohNyjD+dXfXM5GYd2OTHya0zYjTNMmAJuuRsapJMP9F1z7UTpMpLMxS/JaCWdyX6qIs+funJdPF7bjzYAQBvtbz+6SANBgN36gG1B2xHhccTn6WE8vagwwSNuM70egpahcTktoHxI7uS1JGN9gKAr6nbp+8DbFz3a2wd+XoF3nSJb/d2f/6zJR8yJF8AOyb30kwg3zf5cWw==-MIIEPjCCAiagAwIBAgIBBTANBgkqhkiG9w0BAQsFADAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBMB4XDTE1MTEwMjA4MjE0OFoXDTE4MTEwMTA4MjE0OFowETEPMA0GA1UEAwwGcHJvZDN5MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxcQkq+zdxlR2mmRYBPzGbUNdMN6OaXiXzxIWtMEkrJMO/5oUfQJbLLuMSMK0QHFmaI37WShyxZcfRCidwXjot4zmNBKnlyHodDij/78TmVqFl8nOeD5+07B8VEaIu7c3E1N+e1doC6wht4I4+IEmtsPAdoaj5WCQVQbrI8KeT8M9VcBIWX7fD0fhexfg3ZRt0xqwMcXGNp3DdJHiO0rCdU+Itv7EmtnSVq9jBG1usMSFvMowR25mju2JcPFp1+I4ZI+FqgR8gyG8oiNDyNEoAbsR3lOpI7grUYSvkB/xVy/VoklPCK2h0f0GJxFjnye8NT1PAywoyl7RmiAVRE/EKwIDAQABo4GZMIGWMAkGA1UdEwQCMAAwHQYDVR0OBBYEFGEpG9oZGcfLMGNBkY7SgHiMGgTcMEgGA1UdIwRBMD+AFKOetkhnQhI2Qb1t4Lm0oFKLl/GzoRykGjAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBggkA0myxg7KDeeEwEwYDVR0lBAwwCgYIKwYBBQUHAwEwCwYDVR0PBAQDAgWgMA0GCSqGSIb3DQEBCwUAA4ICAQC9WZuYgQedSuOc5TOUSrRigMw4/+wuC5EtZBfvdl4HT/8vzMW/oUlIP4YCvA0XKyBaCJ2iX+ZCDKoPfiYXiaSiH+HxAPV6J79vvouxKrWg2XV6ShFtPLP+0gPdGq3x9R3+kJbmAm8w+FOdlWqAfJrLvpzMGNeDU14YGXiZ9bVzmIQbwrBA+c/F4tlK/DV07dsNExihqFoibnqDiVNTGombaU2dDup2gwKdL81ua8EIcGNExHe82kjF4zwfadHk3bQVvbfdAwxcDy4xBjs3L4raPLU3yenSzr/OEur1+jfOxnQSmEcMXKXgrAQ9U55gwjcOFKrgOxEdek/Sk1VfOjvS+nuM4eyEruFMfaZHzoQiuw4IqgGc45ohFH0UUyjYcuFxxDSU9lMCv8qdHKm+wnPRb0l9l5vXsCBDuhAGYD6ss+Ga+aDY6f/qXZuUCEUOH3QUNbbCUlviSz6+GiRnt1kA9N2Qachl+2yBfaqUqr8h7Z2gsx5LcIf5kYNsqJ0GavXTVyWh7PYiKX4bs354ZQLUwwa/cG++2+wNWP+HtBhVxMRNTdVhSm38AknZlD+PTAsWGu9GyLmhti2EnVwGybSD2Dxmhxk3IPCkhKAK+pl0eWYGZWG3tJ9mZ7SowcXLWDFAk0lRJnKGFMTggrWjV8GYpw5bq23VmIqqDLgkNzuoog==
+    
+    设置Ubuntu下Pycharm的快捷启动方式  Ubuntu的快捷方式都放在/usr/share/applications，首先在该目录下创建一个Pycharm.desktop
+    sudo gedit /usr/share/applications/Pycharm.desktop
+    然后输入以下内容，注意Exec和Icon需要找到正确的路径
+    [Desktop Entry]
+    Type=Application
+    Name=Pycharm
+    GenericName=Pycharm3
+    Comment=Pycharm3:The Python IDE
+    Exec="/opt/software/pycharm-2017.3.4/bin/pycharm.sh"
+    Icon=/opt/software/pycharm-2017.3.4/bin/pycharm.png
+    Terminal=pycharm
+    Categories=Pycharm;
+    然后双击打开，再锁定到启动器就好了.
+    
+2.配置深度学习库
+2.1 安装tensorflow
+配置tensorflow环境，查看http://blog.csdn.net/u010004460/article/details/53761967
+首先建立一个conda计算环境： 
+命令：conda create -n tensorflow python=3.6
+激活环境，使用conda安装TensorFlow
+命令：source activate tensorflow
+在终端直接输入： 
+pip install tensorflow-gpu
+
+cd /home/lyy/anaconda3/lib/python3.6/site-packages
+
+2.2 安装keras
+pip install keras
+>>> import keras
+显示using theano backend
+from keras.models import Sequential
+
+安装jpype
+用于在python程序里面运行jvm
+pip install jpype1
+
+2.3 安装opencv
+anaconda安装opencv
+pip install python-opencv
+安装包下载地址：https://pypi.python.org/pypi/opencv-python
+
+3.配置jupyter
+3.1生成配置文件
+    jupyter notebook --generate-config
+Writing default config to: /home/lyy/.jupyter/jupyter_notebook_config.py
+会在~/.jupyter目录下生成一个名为jupyter_notebook_config.py
+
+3.2配置密码
+from notebook.auth import passwd
+passwd()
+Enter password:
+Verify password:
+'sha1:93ede60352f6:fe06c552ba88f894c7a43b840309b7557eb5dacf'
+
+3.3 生成pem和key文件
+使用如下命令会在当前路径下生成一个mykey.key和一个mycert.pem文件，这两个文件会在后面的配置中使用到。下面的命令会生成有效期为365天的certificate文件
+rm -r /home/lyy/lyy/openssl
+mkdir /home/lyy/lyy/openssl
+cd /home/lyy/lyy/openssl
+openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mykey.key -out mycert.pem
+
+3.4配置文件
+这里主要配置第一步中的jupyter_notebook_config.py文件。需要配置的选项如下：
+sudo gedit /home/lyy/.jupyter/jupyter_notebook_config.py
+
+c.NotebookApp.certfile = u'/home/lyy/lyy/openssl/mycert.pem'
+c.NotebookApp.keyfile = u'/home/lyy/lyy/openssl/mykey.key'
+# Set ip to '*' to bind on all interfaces (ips) for the public servcd er
+c.NotebookApp.ip = '0.0.0.0'
+c.NotebookApp.password = u'sha1:93ede60352f6:fe06c552ba88f894c7a43b840309b7557eb5dacf'
+c.NotebookApp.open_browser = False
+
+# 指定端口号
+c.NotebookApp.port = 8888
+
+关闭防火墙
+sudo ufw disable   然后按enter键执行命令
+配置完成后，在TensorFlow环境下输入jupyter notebook命令，在远程中打开Chrome浏览器，输入https://localhost:8888就可以远程访问并使用TensorFLow了。
+
+python安装第三方库
+
+1 配置机器学习常用库
+cd ~/anaconda3/bin
+source activate
+conda update --all
+
+pip install jieba pykafka tqdm imbalanced-learn wordcloud gensim graphviz pyhanlp rasa_core tensorflow-gpu==1.12 keras hmmlearn foolnltk deepnlp
+pip install xgboost catboost  itchat pytesseract opencv-python
+pip install torch torchvision
+
+
+安装pytorch(翻墙)
+官方地址：http://pytorch.org/
+python2.7+cuda8.0
+pip install http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp27-cp27mu-manylinux1_x86_64.whl 
+pip install torchvision 
+
+# if the above command does not work, then you have python 2.7 UCS2, use this command 
+pip install http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp27-cp27m-manylinux1_x86_64.whl
+
+python3.6+cuda8.0
+sudo apt install python3-pip
+
+pip install http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp36-cp36m-manylinux1_x86_64.whl 
+pip install torchvision
+
+win10安装参考文档：http://blog.csdn.net/xiangxianghehe/article/details/73500031
+
+安装CNTK
+github地址：https://github.com/Microsoft/CNTK
+
+百度的机器学习平台paddlepaddle
+官方网址：http://www.paddlepaddle.org/
+在 CentOS 7，Ubuntu 16.04， MacOS 10.12，Python 2.7.x 环境下测试过
+pip install paddlepaddle
+
+2 配置nltk库
+import nltk
+nltk.download()
+
+3 安装seq2seq
+cd ~/lyy/software/python配置/packages/
+git clone https://www.github.com/farizrahman4u/recurrentshop.git
+cd recurrentshop && python setup.py install
+pip install git+https://github.com/farizrahman4u/seq2seq.git
+
+
+安装jupyter扩展插件
+参考网址：http://www.elecfans.com/d/650252.html
+pip install jupyter_nbextensions_configurator jupyter_contrib_nbextensions
+jupyter contrib nbextension install --user
+jupyter nbextensions_configurator enable --user
+
+pip install autopep8
+
+安装CRFPP
+1.下载CRF++-0.58.tar.gz
+
+2.cd到压缩包目录，执行：
+sudo tar zxvf CRF++-0.58.tar.gz
+cd CRF++-0.58
+sh configure
+make
+make install
+
+3.进入子目录Python中 
+python setup.py build && python setup.py install 
+4.进入python解释器，import CRFPP测试是否安装成功 
+5.若出现ImportError: libcrfpp.so.0: cannot open shared object file: No such file or directory 。 
+解决方法：（未解决的话，见下方方法，亲测有效） 
+ln -s /usr/local/lib/libcrfpp.so.0 /usr/lib/ 
+6.重新import试试看，是否成功。
+
+ImportError: libcrfpp.so.0: cannot open shared object file: No such file or directory
+（1）如果Python要使用CRFPP包，必须安装python的依赖包，在下载源码解压后的 CRF++-0.58/python路径下运行以下命令 
+python setup.py build 
+sudo python setup.py install 
+（2）然后在Python 或者Ipython 里输入 import CRFPP 如果发生如下错误 
+ImportError: libcrfpp.so.0: cannot open shared object file: No such file or directory 
+可用下面的方法解决 
+sudo vim /etc/ld.so.conf 
+添加 
+include /usr/local/lib 
+保存后加载一下
+
+sudo /sbin/ldconfig -v
+
+（3）如果还是提示：ImportError: libcrfpp.so.0: cannot open shared object file: No such file or directory 
+错误的原因是未能引入libcrfpp.so.0库，查找库文件存在，于是建立链接： 
+64位系统sudo ln -s /usr/local/lib/libcrfpp.so.* /usr/lib64/
+
+
+python安装GPU-版的lightGBM
+sudo apt-get install --no-install-recommends git cmake build-essential libboost-dev libboost-system-dev libboost-filesystem-dev
+
+sudo pip install lightgbm --install-option=--gpu --install-option="--opencl-include-dir=/usr/local/cuda/include/" --install-option="--opencl-library=/usr/local/cuda/lib64/libOpenCL.so"
