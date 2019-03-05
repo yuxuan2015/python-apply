@@ -233,7 +233,8 @@ cd ~/anaconda3/bin
 source activate
 conda update --all
 
-pip install jieba pykafka tqdm imbalanced-learn wordcloud gensim graphviz pyhanlp rasa_core==0.12.4 tensorflow-gpu==1.12 keras hmmlearn foolnltk simhash datasketch pyltp fuzzywuzzy python-Levenshtein
+pip install jieba pykafka tqdm imbalanced-learn wordcloud gensim graphviz pyhanlp rasa_core==0.12.4 tensorflow-gpu==1.12 keras \
+hmmlearn foolnltk simhash datasketch pyltp fuzzywuzzy python-Levenshtein
 pip install xgboost catboost  itchat pytesseract opencv-python deepnlp
 pip install torch torchvision
 
@@ -270,7 +271,33 @@ pip install autopep8
 1.下载CRF++-0.58.tar.gz
 
 2.cd到压缩包目录，执行：
-sudo tar zxvf CRF++-0.58.tar.gz
+sudo tar zxvf CRF++-0.58.tar.gz安装pytorch(翻墙)
+242
+官方地址：http://pytorch.org/
+243
+python2.7+cuda8.0
+244
+pip install http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp27-cp27mu-manylinux1_x86_64.whl 
+245
+pip install torchvision 
+246
+​
+247
+# if the above command does not work, then you have python 2.7 UCS2, use this command 
+248
+pip install http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp27-cp27m-manylinux1_x86_64.whl
+249
+​
+250
+python3.6+cuda8.0
+251
+sudo apt install python3-pip
+252
+​
+253
+pip install http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp36-cp36m-manylinux1_x86_64.whl 
+254
+pip install torchvision
 cd CRF++-0.58
 sh configure
 make
