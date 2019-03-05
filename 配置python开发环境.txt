@@ -233,25 +233,9 @@ cd ~/anaconda3/bin
 source activate
 conda update --all
 
-pip install jieba pykafka tqdm imbalanced-learn wordcloud gensim graphviz pyhanlp rasa_core tensorflow-gpu==1.12 keras hmmlearn foolnltk deepnlp
-pip install xgboost catboost  itchat pytesseract opencv-python
+pip install jieba pykafka tqdm imbalanced-learn wordcloud gensim graphviz pyhanlp rasa_core==0.12.4 tensorflow-gpu==1.12 keras hmmlearn foolnltk simhash datasketch pyltp fuzzywuzzy python-Levenshtein
+pip install xgboost catboost  itchat pytesseract opencv-python deepnlp
 pip install torch torchvision
-
-
-安装pytorch(翻墙)
-官方地址：http://pytorch.org/
-python2.7+cuda8.0
-pip install http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp27-cp27mu-manylinux1_x86_64.whl 
-pip install torchvision 
-
-# if the above command does not work, then you have python 2.7 UCS2, use this command 
-pip install http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp27-cp27m-manylinux1_x86_64.whl
-
-python3.6+cuda8.0
-sudo apt install python3-pip
-
-pip install http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp36-cp36m-manylinux1_x86_64.whl 
-pip install torchvision
 
 win10安装参考文档：http://blog.csdn.net/xiangxianghehe/article/details/73500031
 
