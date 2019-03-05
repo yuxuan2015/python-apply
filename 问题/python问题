@@ -52,3 +52,6 @@ conda install -c conda-forge prompt_toolkit
 RemoveError: 'setuptools' is a dependency of conda and cannot be removed from conda's operating environment.
 解决方法：
 conda upgrade conda
+
+8 3.7回退到3.6
+conda install python=3.6
