@@ -78,3 +78,6 @@ channels:
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 show_channel_urls: true
 
+10 安装pyhanlp
+raise BadZipFile("File is not a zip file")
+zipfile.BadZipFile: File is not a zip file
