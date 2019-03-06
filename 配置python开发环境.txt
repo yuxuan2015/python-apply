@@ -226,6 +226,11 @@ c.NotebookApp.port = 8888
 sudo ufw disable   然后按enter键执行命令
 配置完成后，在TensorFlow环境下输入jupyter notebook命令，在远程中打开Chrome浏览器，输入https://localhost:8888就可以远程访问并使用TensorFLow了。
 
+安装jupyter扩展插件
+pip install jupyter_nbextensions_configurator jupyter_contrib_nbextensions
+jupyter contrib nbextension install --user
+jupyter nbextensions_configurator enable --user
+
 python安装第三方库
 
 1 配置机器学习常用库
