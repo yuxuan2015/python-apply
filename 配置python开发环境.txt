@@ -242,6 +242,12 @@ cd ~/anaconda3/bin
 source activate
 conda update --all
 
+#更改conda官方源为清华源
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --set show_channel_urls yes
+
 pip install jieba pykafka tqdm imbalanced-learn wordcloud gensim graphviz pyhanlp rasa_core==0.12.4 tensorflow-gpu==1.12 keras \
 hmmlearn foolnltk simhash datasketch pyltp fuzzywuzzy python-Levenshtein
 pip install xgboost catboost  itchat pytesseract opencv-python deepnlp
