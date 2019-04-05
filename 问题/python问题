@@ -81,3 +81,15 @@ show_channel_urls: true
 10 安装pyhanlp
 raise BadZipFile("File is not a zip file")
 zipfile.BadZipFile: File is not a zip file
+
+11 cahtterbot
+ModuleNotFoundError: No module named 'chatterbot_corpus'
+解决方法：
+pip install --upgrade chatterbot_corpus
+
+12 chatterbot_corpus
+Cannot uninstall 'PyYAML'.
+解决方法：
+sudo rm -rf /usr/lib/python3/dist-packages/yaml
+sudo rm -rf /usr/lib/python3/dist-packages/PyYAML-*
+pip install --ignore-installed PyYAML
