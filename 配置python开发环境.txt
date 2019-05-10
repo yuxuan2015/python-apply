@@ -233,6 +233,7 @@ sudo ufw disable   然后按enter键执行命令
 安装jupyter扩展插件
 用pip：
 pip install jupyter_nbextensions_configurator jupyter_contrib_nbextensions
+pip install autopep8
 jupyter contrib nbextension install --user
 jupyter nbextensions_configurator enable --user
 如果使用的anaconda，还可以用conda安装：
@@ -277,14 +278,6 @@ git clone https://www.github.com/farizrahman4u/recurrentshop.git
 cd recurrentshop && python setup.py install
 pip install git+https://github.com/farizrahman4u/seq2seq.git
 
-
-安装jupyter扩展插件
-参考网址：http://www.elecfans.com/d/650252.html
-pip install jupyter_nbextensions_configurator jupyter_contrib_nbextensions
-jupyter contrib nbextension install --user
-jupyter nbextensions_configurator enable --user
-
-pip install autopep8
 
 安装CRFPP
 1.下载CRF++-0.58.tar.gz
@@ -352,4 +345,4 @@ sudo /sbin/ldconfig -v
 python安装GPU-版的lightGBM
 sudo apt-get install --no-install-recommends git cmake build-essential libboost-dev libboost-system-dev libboost-filesystem-dev
 
-sudo pip install lightgbm --install-option=--gpu --install-option="--opencl-include-dir=/usr/local/cuda/include/" --install-option="--opencl-library=/usr/local/cuda/lib64/libOpenCL.so"
+pip install lightgbm --install-option=--gpu --install-option="--opencl-include-dir=/usr/local/cuda/include/" --install-option="--opencl-library=/usr/local/cuda/lib64/libOpenCL.so"
