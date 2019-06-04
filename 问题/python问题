@@ -93,3 +93,7 @@ Cannot uninstall 'PyYAML'.
 sudo rm -rf /usr/lib/python3/dist-packages/yaml
 sudo rm -rf /usr/lib/python3/dist-packages/PyYAML-*
 pip install --ignore-installed PyYAML
+
+13 ImportError: numpy.core.multiarray failed to import
+解决方案：
+pip install -U numpy
