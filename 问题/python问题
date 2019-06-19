@@ -109,3 +109,7 @@ pip install djange==2.1.4
 解决方法：
 从python 3.6开始，enum34库不再与标准库兼容。该库也是不必要的，因此您只需卸载它即可。
 pip uninstall enum34
+
+17 RemoveError: 'setuptools' is a dependency of conda and cannot be removed from conda's operating environment
+解决方法：
+pip uninstall setuptools
