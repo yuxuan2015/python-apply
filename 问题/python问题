@@ -104,3 +104,8 @@ pip install -U numpy
 15 django.core.exceptions.ImproperlyConfigured: mysqlclient 1.3.13 or newer is required; you have 0.9.3
 解决方案：降低django的版本，降到2.1.4
 pip install djange==2.1.4
+
+16 AttributeError: module 'enum' has no attribute 'IntFlag'
+解决方法：
+从python 3.6开始，enum34库不再与标准库兼容。该库也是不必要的，因此您只需卸载它即可。
+pip uninstall enum34
