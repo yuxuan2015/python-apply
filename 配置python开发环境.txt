@@ -253,7 +253,7 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 conda config --set show_channel_urls yes
 
-pip install jieba pykafka tqdm imbalanced-learn wordcloud gensim graphviz pyhanlp rasa_core==0.12.4 tensorflow-gpu==1.12 keras \
+pip install jieba pykafka tqdm imbalanced-learn wordcloud gensim graphviz pyhanlp tensorflow-gpu==1.13 keras \
 hmmlearn foolnltk simhash datasketch pyltp fuzzywuzzy python-Levenshtein
 pip install xgboost catboost  itchat pytesseract opencv-python deepnlp
 pip install torch torchvision
