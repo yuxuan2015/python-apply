@@ -207,17 +207,17 @@ Verify password:
 
 3.3 生成pem和key文件
 使用如下命令会在当前路径下生成一个mykey.key和一个mycert.pem文件，这两个文件会在后面的配置中使用到。下面的命令会生成有效期为365天的certificate文件
-rm -r /home/lyy/lyy/openssl
-mkdir /home/lyy/lyy/openssl
-cd /home/lyy/lyy/openssl
+rm -r /data/openssl
+mkdir /data/openssl
+cd /data/openssl
 openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mykey.key -out mycert.pem
 
 3.4配置文件
 这里主要配置第一步中的jupyter_notebook_config.py文件。需要配置的选项如下：
 sudo gedit /home/lyy/.jupyter/jupyter_notebook_config.py
 
-c.NotebookApp.certfile = u'/home/lyy/lyy/openssl/mycert.pem'
-c.NotebookApp.keyfile = u'/home/lyy/lyy/openssl/mykey.key'
+c.NotebookApp.certfile = u'/data/openssl/mycert.pem'
+c.NotebookApp.keyfile = u'/data/openssl/mykey.key'
 # Set ip to '*' to bind on all interfaces (ips) for the public servcd er
 c.NotebookApp.ip = '0.0.0.0'
 c.NotebookApp.password = u'sha1:93ede60352f6:fe06c552ba88f894c7a43b840309b7557eb5dacf'
