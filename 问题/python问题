@@ -113,3 +113,9 @@ pip uninstall enum34
 17 RemoveError: 'setuptools' is a dependency of conda and cannot be removed from conda's operating environment
 解决方法：
 pip uninstall setuptools
+
+18 启动jupyter
+ImportError: cannot import name 'create_prompt_application'
+解决方法：
+pip install ipython
+
