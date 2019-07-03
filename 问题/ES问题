@@ -1,0 +1,4 @@
+1 TypeError: search() got an unexpected keyword argument 'doc_type'
+elasticsearch包的版本问题
+解决方法：
+pip install elasticsearch==6.3.1
