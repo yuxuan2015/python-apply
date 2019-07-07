@@ -119,3 +119,8 @@ ImportError: cannot import name 'create_prompt_application'
 解决方法：
 pip install ipython
 
+19  Iterator
+TypeError: iter() returned non-iterator of type 'TextIterator'
+解决方法：
+python2  next
+python3  __next__
