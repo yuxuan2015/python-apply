@@ -159,8 +159,8 @@ sudo ln -s /data/anaconda3/bin/python3.6 /usr/bin/python
     Name=Pycharm
     GenericName=Pycharm3
     Comment=Pycharm3:The Python IDE
-    Exec="/opt/software/pycharm-2017.3.4/bin/pycharm.sh"
-    Icon=/opt/software/pycharm-2017.3.4/bin/pycharm.png
+    Exec="/opt/software/pycharm-2018.1/bin/pycharm.sh"
+    Icon=/opt/software/pycharm-2018.1/bin/pycharm.png
     Terminal=pycharm
     Categories=Pycharm;
     然后双击打开，再锁定到启动器就好了.
