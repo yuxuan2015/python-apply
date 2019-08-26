@@ -302,7 +302,7 @@ python2.7+cuda8.0
 244
 pip install http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp27-cp27mu-manylinux1_x86_64.whl 
 245
-pip install torchvision 
+pip install torchvision torchtext
 246
 ​
 247
