@@ -310,8 +310,39 @@ pip install git+https://github.com/farizrahman4u/seq2seq.git
 1.下载CRF++-0.58.tar.gz
 
 2.cd到压缩包目录，执行：
-sudo tar zxvf CRF++-0.58.tar.gz安装pytorch(翻墙)
-242
+sudo tar zxvf CRF++-0.58.tar.gz
+cd CRF++-0.58
+sh configure
+make
+make install
+
+3.进入子目录Python中 
+python setup.py build && python setup.py install 
+4.进入python解释器，import CRFPP测试是否安装成功 
+5.若出现ImportError: libcrfpp.so.0: cannot open shared object file: No such file or directory 。 
+解决方法：（未解决的话，见下方方法，亲测有效） 
+ln -s /usr/local/lib/libcrfpp.so.0 /usr/lib/ 
+6.重新import试试看，是否成功。
+
+ImportError: libcrfpp.so.0: cannot open shared object file: No such file or directory
+（1）如果Python要使用CRFPP包，必须安装python的依赖包，在下载源码解压后的 CRF++-0.58/python路径下运行以下命令 
+python setup.py build 
+sudo python setup.py install 
+（2）然后在Python 或者Ipython 里输入 import CRFPP 如果发生如下错误 
+ImportError: libcrfpp.so.0: cannot open shared object file: No such file or directory 
+可用下面的方法解决 
+sudo vim /etc/ld.so.conf 
+添加 
+include /usr/local/lib 
+保存后加载一下
+
+sudo /sbin/ldconfig -v
+
+（3）如果还是提示：ImportError: libcrfpp.so.0: cannot open shared object file: No such file or directory 
+错误的原因是未能引入libcrfpp.so.0库，查找库文件存在，于是建立链接： 
+64位系统sudo ln -s /usr/local/lib/libcrfpp.so.* /usr/lib64/
+
+安装pytorch(翻墙)
 官方地址：http://pytorch.org/
 243
 python2.7+cuda8.0
