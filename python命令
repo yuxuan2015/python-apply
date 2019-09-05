@@ -66,3 +66,6 @@ use_multiprocessing=False
 
 4 
 pip freeze >requirements.txt
+
+5 查看python安装目录
+sys.pah
