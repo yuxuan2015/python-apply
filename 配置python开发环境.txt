@@ -166,6 +166,9 @@ sudo ln -s /data/anaconda3/bin/python3.6 /usr/bin/python
     Categories=Pycharm;
     然后双击打开，再锁定到启动器就好了.
     
+    pycharm配置远程
+    参考文档：https://juejin.im/post/5b08dae651882538b978dcb3
+    
 2.配置深度学习库
 2.1 安装tensorflow
 配置tensorflow环境，查看http://blog.csdn.net/u010004460/article/details/53761967
