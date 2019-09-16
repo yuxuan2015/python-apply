@@ -124,3 +124,13 @@ TypeError: iter() returned non-iterator of type 'TextIterator'
 解决方法：
 python2  next
 python3  __next__
+
+20 pip install/uninstall ERROR
+subprocess.CalledProcessError: Command '('lsb_release', '-a')' returned non-zero exit status 1.
+解决方案：
+找到lsb_release.py文件和CommandNotFound目录，把它们拷贝到报的错误中subprocess.py所在文件夹
+
+命令如下：
+sudo find / -name'lsb_release.py'
+
+sudo cp  /usr/lib/python3/dist-packages/lsb_release.py /data/anaconda3/lib/python3.6
