@@ -139,9 +139,9 @@ sudo ln -s /data/anaconda3/bin/python3.6 /usr/bin/python
     sudo mkdir /opt/software
     cd /data/software/python配置
     #将解压完的文件夹移动到/opt/software目录
-    sudo tar -zxvf pycharm-professional-2017.3.4.tar.gz  -C /opt/software
+    sudo tar -zxvf pycharm-professional-2018.1.tar.gz  -C /opt/software
     # 进入文件夹的bin文件夹内
-    cd /opt/software/pycharm-2017.3.4/bin
+    cd /opt/software/pycharm-2018.1/bin
     # 运行sh文件安装
     sudo sh pycharm.sh
 
