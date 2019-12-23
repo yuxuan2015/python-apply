@@ -134,3 +134,7 @@ subprocess.CalledProcessError: Command '('lsb_release', '-a')' returned non-zero
 sudo find / -name'lsb_release.py'
 
 sudo cp  /usr/lib/python3/dist-packages/lsb_release.py /data/anaconda3/lib/python3.6
+
+21 Class advice impossible in Python3. Use the @implementer class decorator instead
+解决方案：
+git clone https://github.com/NVIDIA/apex.git && cd apex && python setup.py install --cuda_ext --cpp_ext
