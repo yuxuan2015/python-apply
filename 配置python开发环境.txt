@@ -289,6 +289,19 @@ channels:
   - defaults
 show_channel_urls: true
 
+CondaHTTPError: HTTP 000 CONNECTION FAILED for url
+原因：
+配置的镜像源有问题，需要修改对应的镜像源
+解决方案：
+https://blog.csdn.net/ada0915/article/details/78529877
+#修改后配置文件的内容如下：
+vim ~/.condarc
+channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+show_channel_urls: true
+
 
 pip install jieba pykafka tqdm imbalanced-learn wordcloud gensim graphviz pyhanlp tensorflow-gpu==1.12 keras \
 hmmlearn foolnltk simhash datasketch pyltp fuzzywuzzy python-Levenshtein
