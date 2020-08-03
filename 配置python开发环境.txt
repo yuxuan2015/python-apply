@@ -96,7 +96,10 @@ sudo passwd root
 ssh-keygen -f "/home/lyy/.ssh/known_hosts" -R localhost
 
 1.2安装anaconda
-    cd /home/lyy/lyy/software/python配置/3.6
+下载地址：
+anaconda个版本下载地址：https://repo.anaconda.com/archive/
+版本对照表：https://blog.csdn.net/yuejisuo1948/article/details/81043823
+    cd /data/software/python配置/3.6
     sudo bash Anaconda3-5.1.0-Linux-x86_64.sh
     sudo chown -R lyy /home/lyy/anaconda3/
 	
