@@ -83,3 +83,7 @@ tf.matmul(a,b) 这里的矩阵a和矩阵b的shape应是a的行数对等与b的�
 E tensorflow/stream_executor/cuda/cuda_dnn.cc:353] Could not create cudnn handle: CUDNN_STATUS_NOT_INITIALIZED
 解决方法：
 执行 ：sudo rm -rf ~/.nv/    （一定最后边不要漏掉“/”，否则会提示“.nv”是目录, 另外“~”前边有空格）
+
+1.14 ERROR: Cannot uninstall 'wrapt'. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall
+解决方法：
+pip install tensorflow-gpu --ignore-installed wrapt
