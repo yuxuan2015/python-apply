@@ -82,7 +82,7 @@ show_channel_urls: true
 raise BadZipFile("File is not a zip file")
 zipfile.BadZipFile: File is not a zip file
 
-11 cahtterbot
+11 chatterbot
 ModuleNotFoundError: No module named 'chatterbot_corpus'
 解决方法：
 pip install --upgrade chatterbot_corpus
