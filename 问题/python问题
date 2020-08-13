@@ -148,3 +148,10 @@ a support request with your network engineering team.
 'https://repo.anaconda.com/pkgs/main/linux-64'
 解决方法：
 conda config --set ssl_verify False 
+
+23 
+安装pysmbc
+https://github.com/hamano/pysmbc
+解决方法：
+sudo apt install build-essential pkg-config smbclient libsmbclient libsmbclient-dev python-dev python3-dev
+pip install pysmbc
