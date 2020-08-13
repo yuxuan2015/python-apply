@@ -138,3 +138,13 @@ sudo cp  /usr/lib/python3/dist-packages/lsb_release.py /data/anaconda3/lib/pytho
 21 Class advice impossible in Python3. Use the @implementer class decorator instead
 解决方案：
 git clone https://github.com/NVIDIA/apex.git && cd apex && python setup.py install --cuda_ext --cpp_ext
+
+22 CondaHTTPError: HTTP 000 CONNECTION FAILED for url <https://repo.anaconda.com/pkgs/main/linux-64/current_repodata.json>
+Elapsed: -
+An HTTP error occurred when trying to retrieve this URL.
+HTTP errors are often intermittent, and a simple retry will get you on your way.
+If your current network has https://www.anaconda.com blocked, please file
+a support request with your network engineering team.
+'https://repo.anaconda.com/pkgs/main/linux-64'
+解决方法：
+conda config --set ssl_verify False 
