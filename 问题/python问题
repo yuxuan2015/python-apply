@@ -29,6 +29,7 @@ change
 	c.NotebookApp.ip = '*'
 to
 	c.NotebookApp.ip = '0.0.0.0'
+解决 方案：
 
 4  ImportError: cannot import name abs
 tensorflow和protobuf版本不兼容
@@ -155,3 +156,8 @@ https://github.com/hamano/pysmbc
 解决方法：
 sudo apt install build-essential pkg-config smbclient libsmbclient libsmbclient-dev python-dev python3-dev
 pip install pysmbc
+
+24 
+ERROR: Cannot uninstall 'wrapt'. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.
+解决方法：
+pip install wrapt --ignore-installed
