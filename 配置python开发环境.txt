@@ -224,7 +224,7 @@ Verify password:
 rm -r /data/openssl
 mkdir /data/openssl
 cd /data/openssl
-openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mykey.key -out mycert.pem
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mykey.key -out mycert.pem
 
 3.4配置文件
 这里主要配置第一步中的jupyter_notebook_config.py文件。需要配置的选项如下：
