@@ -161,3 +161,11 @@ pip install pysmbc
 ERROR: Cannot uninstall 'wrapt'. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.
 解决方法：
 pip install wrapt --ignore-installed
+
+25 CERTIFICATE_VERIFY_FAILED错误 certificate verify failed
+解决方案：
+全局取消证书验证，引入如下：
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
+同时：response= requests.get(url=link, verify=False).json()
