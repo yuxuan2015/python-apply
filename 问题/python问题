@@ -169,3 +169,9 @@ import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
 同时：response= requests.get(url=link, verify=False).json()
+
+26 ModuleNotFoundError: No module named '_bz2'
+参考https://stackoverflow.com/questions/12806122/missing-python-bz2-module
+解决方法：
+centos：sudo yum install  bzip2-devel
+ubuntu：sudo apt-get install libbz2-dev
