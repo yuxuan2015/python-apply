@@ -175,3 +175,8 @@ ssl._create_default_https_context = ssl._create_unverified_context
 解决方法：
 centos：sudo yum install  bzip2-devel
 ubuntu：sudo apt-get install libbz2-dev
+
+27 ValueError: numpy.ufunc size changed, may indicate binary incompatibility. Expected 216 from C header, got 192 from PyObject
+原因：numpy的版本太低，需要升级版本
+解决方案：
+pip install -U numpy
