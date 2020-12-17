@@ -1,0 +1,12 @@
+1 OSError: /data/anaconda3/envs/medical_robot/lib/python3.6/site-packages/torchtext/_torchtext.so: undefined symbol: _ZN3c1023_fastEqualsForContainerERKNS_6IValueES2
+问题原因：
+torch与torchtext的版本不对应
+解决方法：
+参照https://github.com/pytorch/text/上面的对应关系，安装对应的版本即可
+PyTorch version	torchtext version	Supported Python version
+nightly build	master	3.6+
+1.7	0.8	3.6+
+1.6	0.7	3.6+
+1.5	0.6	3.5+
+1.4	0.5	2.7, 3.5+
+0.4 and below	0.2.3	2.7, 3.5+
