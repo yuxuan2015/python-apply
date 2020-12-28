@@ -180,3 +180,30 @@ ubuntu：sudo apt-get install libbz2-dev
 原因：numpy的版本太低，需要升级版本
 解决方案：
 pip install -U numpy
+
+28 Collecting package metadata (current_repodata.json): failed
+修改.condarc
+vim ~/.condarc
+输入如下内容：
+清华源
+
+auto_activate_base: false
+ssl_verify: true
+channels:
+  - defaults
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+show_channel_urls: true
+
+中科大源
+
+auto_activate_base: false
+ssl_verify: true
+channels:
+  - https://mirrors.ustc.edu.cn/anaconda/pkgs/main/
+  - https://mirrors.ustc.edu.cn/anaconda/pkgs/free/
+show_channel_urls: true
+channel_priority: flexible
+
+清除缓存
+conda clean -i
