@@ -11,8 +11,7 @@ nightly build	master	3.6+
 1.4	0.5	2.7, 3.5+
 0.4 and below	0.2.3	2.7, 3.5+
 
-2 
-pytorch:RuntimeError: CUDA error: CUBLAS_STATUS_ALLOC_FAILED when calling `cublasCreate(handle)`
+2 pytorch:RuntimeError: CUDA error: CUBLAS_STATUS_ALLOC_FAILED when calling `cublasCreate(handle)`
 原因：显存溢出
 解决方法：
 减小batch_size
