@@ -15,3 +15,12 @@ nightly build	master	3.6+
 原因：显存溢出
 解决方法：
 减小batch_size
+
+3 ImportError: cannot import name ‘amp‘ from ‘torch.cuda‘ 
+原因分析：
+1 torch和cuda版本不匹配
+2 缺少apex
+https://blog.csdn.net/weixin_41010198/article/details/108124252
+git clone https://github.com.cnpmjs.org/NVIDIA/apex.git
+cd apex
+python setup.py install
