@@ -228,7 +228,7 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mykey.key -out mycer
 
 3.4配置文件
 这里主要配置第一步中的jupyter_notebook_config.py文件。需要配置的选项如下：
-sudo gedit /home/lyy/.jupyter/jupyter_notebook_config.py
+sudo gedit ~/.jupyter/jupyter_notebook_config.py
 
 c.NotebookApp.certfile = u'/data/openssl/mycert.pem'
 c.NotebookApp.keyfile = u'/data/openssl/mykey.key'
