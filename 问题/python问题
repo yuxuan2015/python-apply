@@ -228,3 +228,7 @@ strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
 30 ERROR: Could not build wheels for spacy-alignments which use PEP 517 and cannot be installed directly
 解决方案：
 pip install -U pip
+
+31 ModuleNotFoundError: No module named ‘_ssl‘
+解决方案：http://www.bubuko.com/infodetail-3586336.html
+
