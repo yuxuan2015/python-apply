@@ -232,3 +232,11 @@ pip install -U pip
 31 ModuleNotFoundError: No module named ‘_ssl‘
 解决方案：http://www.bubuko.com/infodetail-3586336.html
 
+32 ModuleNotFoundError: No module named '_bz2'
+解决方法：
+Probably as you built python from source, you don't have bz2 headers.
+Install them on Ubuntu/Debian:
+sudo apt-get install libbz2-dev
+Fedora/Centos:
+sudo yum install bzip2-devel 
+
