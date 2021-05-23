@@ -222,6 +222,10 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
 
+Centos 7 中高版本 libstdc++.so.6下载地址（解决报错：version’GLIBCXX_3.4.20’）
+http://www.vuln.cn/9154
+https://www.codenong.com/cs106550245/
+
 再运行命令,
 strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
 
