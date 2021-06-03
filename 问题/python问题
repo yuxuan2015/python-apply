@@ -244,3 +244,24 @@ sudo apt-get install libbz2-dev
 Fedora/Centos:
 sudo yum install bzip2-devel 
 
+33 ModuleNotFoundError: No module named '_lzma'
+解决方案：https://cdmana.com/2021/01/20210119173609340R.html
+解决方法：
+第一步：
+yum install xz-devel
+yum install python-backports-lzma
+pip install backports.lzma
+第二步：
+进入python 安装路径，找到lzma.py，如上日志提示的/usr/local/lib/python3.7/lzma.py，修改zma.py文件中的导入部份如下
+vi lzma.py 
+修改前
+    from _lzma import *
+    from _lzma import _encode_filter_properties, _decode_filter_properties
+修改后 
+try:
+    from _lzma import *
+    from _lzma import _encode_filter_properties, _decode_filter_properties
+except ImportError:
+    from backports.lzma import *
+    from backports.lzma import _encode_filter_properties, _decode_filter_properties
+OK，重新运行程序，就不会再出现错误了。
