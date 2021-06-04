@@ -24,3 +24,23 @@ https://blog.csdn.net/weixin_41010198/article/details/108124252
 git clone https://github.com.cnpmjs.org/NVIDIA/apex.git
 cd apex
 python setup.py install
+
+https://blog.csdn.net/u014264373/article/details/109606352
+1.安装tensorwatch
+pip install tensorwatch
+
+2.安装后调用发现会有很多错误，包括但不限于
+2.1 AttributeError: module 'torch.onnx' has no attribute 'set_training'
+原因：pytorch版本太高，我是1.6，而1.6以下的版本torch.onnxhas 才有属性 'set_training'
+办法：把pytorch的版本降低，可以直接使用
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple torch==1.2
+
+2.2 AttributeError: ‘Dot’ object has no attribute ‘repr_svg’ 
+原因：也是版本问题
+办法：Anaconda\Lib\site-packages\tensorwatch\model_graph\hiddenlayer\pytorch_draw_model.py的第13行改为 return self.dot.create_svg().decode()
+
+2.3 FileNotFoundError: [Error 2] "dot" not found in path
+原因：Graphviz和pydot的问题
+办法：点击链接
+我装好Graphviz就没有问题了。
+大部分问题都是版本不匹配问题。
