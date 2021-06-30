@@ -95,3 +95,7 @@ This error is because you have incompatibility issues between your TensorFlow, P
 1.17 防止tensorflow占用所有可用GPU内存
 可以添加如下语句：
 export TF_FORCE_GPU_ALLOW_GROWTH=True
+
+1.18 设置GPU的使用率
+For example, say you have two visible GPUs(GPU:0 and GPU:1) and you want to allocate 1024 MB from the first GPU and 2048 MB from the second GPU. You can do this by setting the environment variable TF_GPU_MEMORY_ALLOC to "0:1024, 1:2048"
+export TF_GPU_MEMORY_ALLOC="0:1024, 1:2048"
