@@ -265,3 +265,8 @@ except ImportError:
     from backports.lzma import *
     from backports.lzma import _encode_filter_properties, _decode_filter_properties
 OK，重新运行程序，就不会再出现错误了。
+
+34 ModuleNotFoundError: No module named '_ctypes'
+3.7版本需要一个新的包libffi-devel
+centos：
+sudo yum install libffi-devel -y
