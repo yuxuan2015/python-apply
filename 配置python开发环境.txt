@@ -28,6 +28,7 @@ API接口 python 2.7
 编程接口 c++ python
 官方网站 https://www.tensorflow.org
 项目地址 https://github.com/tensorflow/tensorflow
+cuda版本：https://tensorflow.google.cn/install/source#linux
  
 4. CNTK
 微软的深度学习框架，速度最快，支持单机、多机、多GPU系统，也号称不用敲代码。。。
@@ -44,6 +45,7 @@ API接口 python 2.7
  
 6. 其他
 Torch
+https://pytorch.org/get-started/previous-versions/
 chainer
 paddle
 
