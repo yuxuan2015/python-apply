@@ -99,3 +99,8 @@ export TF_FORCE_GPU_ALLOW_GROWTH=True
 1.18 设置GPU的使用率
 For example, say you have two visible GPUs(GPU:0 and GPU:1) and you want to allocate 1024 MB from the first GPU and 2048 MB from the second GPU. You can do this by setting the environment variable TF_GPU_MEMORY_ALLOC to "0:1024, 1:2048"
 export TF_GPU_MEMORY_ALLOC="0:1024, 1:2048"
+
+1.19
+tensorflow.python.framework.errors_impl.AlreadyExistsError: Another metric with the same name already exists
+原因：keras版本问题
+解决方案：pip install keras==2.6
