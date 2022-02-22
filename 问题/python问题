@@ -276,3 +276,7 @@ sudo yum install bzip2-devel
 
 mv _bz2.cpython-36m-x86_64-linux-gnu.so _bz2.cpython-37m-x86_64-linux-gnu.so
 cp _bz2.cpython-37m-x86_64-linux-gnu.so /usr/local/python3/lib/python3.7/lib-dynload/
+
+36 TypeError: expected str, bytes or os.PathLike object, not int
+解决方法：
+pip install -U pip --no-cache-dir
