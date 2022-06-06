@@ -216,6 +216,10 @@ strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
 安装libstec++,
 sudo apt-get install libstdc++6
 
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update
+sudo apt-get upgrade libstdc++6
+
 如果还未解决,则可以终端运行如下命令:
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test 
 sudo apt-get update
