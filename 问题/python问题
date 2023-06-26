@@ -248,6 +248,9 @@ sudo apt-get install libbz2-dev
 Fedora/Centos:
 sudo yum install bzip2-devel 
 
+mv _bz2.cpython-36m-x86_64-linux-gnu.so _bz2.cpython-37m-x86_64-linux-gnu.so
+cp _bz2.cpython-37m-x86_64-linux-gnu.so /usr/local/python3/lib/python3.7/lib-dynload/
+
 33 ModuleNotFoundError: No module named '_lzma'
 解决方案：https://cdmana.com/2021/01/20210119173609340R.html
 解决方法：
@@ -275,12 +278,7 @@ OK，重新运行程序，就不会再出现错误了。
 centos：
 sudo yum install libffi-devel -y
 
-35 no moudle name _bz2
-sudo yum install bzip2-devel
 
-mv _bz2.cpython-36m-x86_64-linux-gnu.so _bz2.cpython-37m-x86_64-linux-gnu.so
-cp _bz2.cpython-37m-x86_64-linux-gnu.so /usr/local/python3/lib/python3.7/lib-dynload/
-
-36 TypeError: expected str, bytes or os.PathLike object, not int
+35 TypeError: expected str, bytes or os.PathLike object, not int
 解决方法：
 pip install -U pip --no-cache-dir
