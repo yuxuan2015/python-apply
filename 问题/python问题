@@ -282,3 +282,12 @@ sudo yum install libffi-devel -y
 35 TypeError: expected str, bytes or os.PathLike object, not int
 解决方法：
 pip install -U pip --no-cache-dir
+
+36 ModuleNotFoundError: No module named '_ctypes'
+解决方法：
+If using RHEL/Fedora:
+sudo yum install libffi-devel
+or
+sudo dnf install libffi-devel
+If using Debian/Ubuntu:
+sudo apt-get install libffi-dev
