@@ -296,3 +296,13 @@ sudo apt-get install libffi-dev
 解决方案：
 下载对应的sklearn的whl包进行安装
 下载地址：https://www.wheelodex.org/projects/scikit-learn/
+
+38 /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64/libm.so: undefined reference to `__strtof128_nan@GLIBC_PRIVATE'
+collect2: error: ld returned 1 exit status
+/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../make: ..*** [Programs/_testembed] Error 1/
+../lib64/libm.so:make:  *** Waiting for unfinished jobs....undefined
+ reference to `__strtof128_nan@GLIBC_PRIVATE'
+collect2: error: ld returned 1 exit status
+make: *** [python] Error 1
+解决方法：
+修改目录/ib64/下的libm.so.6的版本
