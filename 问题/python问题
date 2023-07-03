@@ -291,3 +291,8 @@ or
 sudo dnf install libffi-devel
 If using Debian/Ubuntu:
 sudo apt-get install libffi-dev
+
+37 ERROR: Could not build wheels for sklearn, which is required to install pyproject.toml-based projects
+解决方案：
+下载对应的sklearn的whl包进行安装
+下载地址：https://www.wheelodex.org/projects/scikit-learn/
