@@ -68,4 +68,7 @@ use_multiprocessing=False
 pip freeze >requirements.txt
 
 5 查看python安装目录
-sys.pah
+sys.path
+
+6 3.10的match case
+参考文档：https://www.dongwm.com/post/match-case/
